@@ -123,13 +123,6 @@ resource "aws_instance" "this" {
     delete = lookup(var.timeouts, "delete", null)
   }
   
-  
-  tags = merge(
-    local.tags,
-    {
-      Name = "${local.application_name}-tg-${local.environment}"
-    }
-  )
 
   tags        = merge(
     var.tags,
