@@ -10,6 +10,12 @@ variable "name" {
   default     = ""
 }
 
+variable "role" {
+  description = "Role to be used on EC2 instance"
+  type        = string
+  default     = ""
+}
+
 variable "ami" {
   description = "ID of AMI to use for the instance"
   type        = string
