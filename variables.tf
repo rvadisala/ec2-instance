@@ -243,3 +243,9 @@ variable "cpu_threads_per_core" {
   type        = number
   default     = null
 }
+
+variable "security_groups" {
+  description = "A list of security group IDs to associate with"
+  type        = list(string)
+  default     = null
+}
