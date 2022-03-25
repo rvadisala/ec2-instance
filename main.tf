@@ -1,5 +1,5 @@
 locals {
-  create = var.create
+  create             = var.create
   is_t_instance_type = replace(var.instance_type, "/^t(2|3|3a){1}\\..*$/", "1") == "1" ? true : false
 }
 
@@ -16,7 +16,7 @@ resource "aws_instance" "this" {
   availability_zone      = var.availability_zone
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
- #  security_groups          = var.security_groups
+  security_groups        = var.security_groups
 
   key_name             = var.key_name
   monitoring           = var.monitoring
@@ -122,8 +122,8 @@ resource "aws_instance" "this" {
     update = lookup(var.timeouts, "update", null)
     delete = lookup(var.timeouts, "delete", null)
   }
-  
-  tags        = merge(
+
+  tags = merge(
     var.tags,
     { "Name" = var.name
     }
@@ -131,4 +131,3 @@ resource "aws_instance" "this" {
   volume_tags = var.enable_volume_tags ? merge({ "Name" = var.name }, var.volume_tags) : null
 
 }
-
