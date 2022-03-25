@@ -123,13 +123,14 @@ resource "aws_instance" "this" {
     delete = lookup(var.timeouts, "delete", null)
   }
   
-
-  tags        = merge(
-    var.tags,
-    { "Name" = var.name
-      "Role" = var.role
-    }
+  tags = "${merge(
+    local.tags,
+    map(
+      "Name", "Role"
+    )
   )
-  volume_tags = var.enable_volume_tags ? merge({ "Name" = var.name }, var.volume_tags) : null
+  volume_tags = var.enable_volume_tags ? merge({ "Name" = var.name }, var.volume_tags) : null 
+  }"
+
 }
 
