@@ -75,10 +75,10 @@ resource "aws_instance" "this" {
 
 
   dynamic "metadata_options" {
+    #tfsec:ignore:AWS095
     for_each = var.metadata_options != null ? [var.metadata_options] : []
     content {
       http_endpoint               = lookup(metadata_options.value, "http_endpoint", "enabled")
-      #tfsec:ignore:AWS095
       http_tokens                 = lookup(metadata_options.value, "http_tokens", "optional")
       http_put_response_hop_limit = lookup(metadata_options.value, "http_put_response_hop_limit", "1")
       instance_metadata_tags      = lookup(metadata_options.value, "instance_metadata_tags", null)
